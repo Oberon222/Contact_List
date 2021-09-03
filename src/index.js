@@ -1,17 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from "react-dom";
+import "./index.css";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// Import Components
+import SideBar from "./Components/SideBar/SideBar";
+import Main from "./Components/Main/Main";
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const App = () => {
+  return (
+    <div class="container bootstrap snippets bootdeys bootdey">
+      <div class="row decor-default">
+        <SideBar />
+        <Main />
+      </div>
+    </div>
+  )
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
