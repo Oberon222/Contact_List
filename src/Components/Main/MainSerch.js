@@ -1,7 +1,7 @@
 const MainSerch = () =>{
     return (
-        <div class="input-group">
-            <input type="text" class="contacts-list-search" placeholder="Search" />
+        <div className="input-group">
+            <input type="text" className="contacts-list-search" placeholder="Search" />
         </div>
     )
 }
