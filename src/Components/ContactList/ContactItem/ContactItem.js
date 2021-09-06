@@ -1,5 +1,19 @@
-const ContactItem = ({ Name, Image, TelNumber, Email, Status }) => {
+const ContactItem = ({ Name, Image, TelNumber, Email, Status, onChangeStatus, onDelete }) => {
 
+    let defaultStatusColor = "";
+
+    switch(Status){
+        case 'Work': defaultStatusColor = "lab lab-success";
+            break;
+        case 'Friend': defaultStatusColor = "lab lab-warning";
+            break;
+            case 'Family': defaultStatusColor = "lab lab-primary";
+            break;
+        case 'Private': defaultStatusColor = "lab lab-danger";
+            break;
+
+    };
+    
     return (
         <div className="unit">
             <div className="field name">
@@ -12,7 +26,7 @@ const ContactItem = ({ Name, Image, TelNumber, Email, Status }) => {
                 <div>
                     <img src={Image} alt="image" className="avatar" /> {Name}
                 </div>
-                <div className="lab lab-warning">{Status}</div>
+                <div className={defaultStatusColor} onClick={onChangeStatus} >{Status}</div>
             </div>
             <div className="field phone">
                 {TelNumber}
@@ -20,6 +34,11 @@ const ContactItem = ({ Name, Image, TelNumber, Email, Status }) => {
             <div className="field email">
                 {Email}
               </div>
+              <div className="icons">
+                  <i className="far fa-edit fa=2x" ></i>
+                  <i className="fas fa-trash-alt fa=2x" onClick={onDelete} ></i>              
+              </div>
+                            
         </div>
     )
 }

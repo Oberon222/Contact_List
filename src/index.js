@@ -25,7 +25,8 @@ class App extends Component {
         TelNumber: "+1-800-480-9348",
         Email: "gb@gmail.com",
         Status: "Work"
-      },
+      },      
+
       {
         Id: 3,
         Name: "Anna Lee",
@@ -37,13 +38,46 @@ class App extends Component {
     ]
   }
 
+  onChangeStatus = (Id) =>{
+    const index = this.state.ContactList.findIndex(elem => elem.Id == Id);
+    let contact = this.state.ContactList[index];
+    switch(contact.Status){
+      case 'Work': contact.Status = "Friend";
+      break;
+      case 'Friend': contact.Status = "Family";
+      break;
+      case 'Family': contact.Status = "Private";
+      break;
+      case 'Private': contact.Status = "Work";
+      
+    }
+    const tmpList = this.state.ContactList.slice();
+    tmpList[index] = contact;
+    this.setState({
+      ContactList: tmpList
+    })
+
+  }
+
+  onDelete = (Id) =>{
+    const index = this.state.ContactList.findIndex(elem => elem.Id == Id);
+    
+    const partOne = this.state.ContactList.slice(0, index);
+    const partTwo = this.state.ContactList.slice(index+1);
+    const tmpList = [...partOne, ...partTwo];
+    
+    this.setState({
+      ContactList : tmpList
+    })
+  }
+
   render() {
     const { ContactList } = this.state;
     return (
       <div className="container bootstrap snippets bootdeys bootdey" >
         <div className="row decor-default">
           <SideBar />
-          <Main List={ContactList} />
+          <Main List={ContactList} onChangeStatus={this.onChangeStatus} onDelete={this.onDelete} />
         </div>
       </div>
     )
